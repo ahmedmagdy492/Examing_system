@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Exam_system.UI.Contracts
 {
-    public interface IRepository<T> where T : BaseModel
+    public interface IRepository<T> where T : BaseModel, IUserRepository
     {
         IQueryable<T> Collection();
         T Find(int id);

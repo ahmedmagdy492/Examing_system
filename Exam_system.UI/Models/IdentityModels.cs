@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Exam_system.UI.Contracts;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -13,6 +14,8 @@ namespace Exam_system.UI.Models
     {
         [Required]
         public string Name { get; set; }
+        public string Imgurl { get; set; }
+        public string Role { get; set; }
         public List<StudentSubjects> Subjects { get; set; }
         public List<StudentExams> StudentExams { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

@@ -108,3 +108,17 @@ F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.dll
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.pdb
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.initialmodel.resources
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.csproj.GenerateResource.cache
+F:\Projects\Exam_system\Exam_system.UI\bin\System.Runtime.CompilerServices.Unsafe.dll
+F:\Projects\Exam_system\Exam_system.UI\bin\System.Threading.Tasks.Extensions.dll
+F:\Projects\Exam_system\Exam_system.UI\bin\Unity.Abstractions.dll
+F:\Projects\Exam_system\Exam_system.UI\bin\Unity.Container.dll
+F:\Projects\Exam_system\Exam_system.UI\bin\Unity.Mvc.dll
+F:\Projects\Exam_system\Exam_system.UI\bin\WebActivatorEx.dll
+F:\Projects\Exam_system\Exam_system.UI\bin\System.Runtime.CompilerServices.Unsafe.xml
+F:\Projects\Exam_system\Exam_system.UI\bin\System.Threading.Tasks.Extensions.xml
+F:\Projects\Exam_system\Exam_system.UI\bin\Unity.Abstractions.pdb
+F:\Projects\Exam_system\Exam_system.UI\bin\Unity.Container.pdb
+F:\Projects\Exam_system\Exam_system.UI\bin\Unity.Mvc.pdb
+F:\Projects\Exam_system\Exam_system.UI\bin\Unity.Mvc.xml
+F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.edit.resources
+F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedRoleMember.resources

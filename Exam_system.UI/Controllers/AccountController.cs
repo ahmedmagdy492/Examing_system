@@ -75,7 +75,7 @@ namespace Exam_system.UI.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -147,14 +147,26 @@ namespace Exam_system.UI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                
+                string fileName = Guid.NewGuid().ToString("N") + img.FileName;
+                string filePath = Server.MapPath("~/Content/imgs");
+                string fullPath = System.IO.Path.Combine(filePath, fileName);                
+                var user = new ApplicationUser
+                { 
+                    UserName = model.UserName, 
+                    Email = model.Email,
+                    Imgurl = fileName,
+                    Role = "Student"
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    img.SaveAs(fullPath);
+                    UserManager.AddToRole(user.Id, "Student");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
