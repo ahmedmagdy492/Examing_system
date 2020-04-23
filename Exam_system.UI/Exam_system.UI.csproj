@@ -187,10 +187,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Contracts\IEnrollable.cs" />
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -211,6 +213,10 @@
     <Compile Include="Migrations\202004231003187_finishedScheam.Designer.cs">
       <DependentUpon>202004231003187_finishedScheam.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004231038126_added-createDateToSubjectModel.cs" />
+    <Compile Include="Migrations\202004231038126_added-createDateToSubjectModel.Designer.cs">
+      <DependentUpon>202004231038126_added-createDateToSubjectModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Answer.cs" />
@@ -226,11 +232,14 @@
     <Compile Include="Models\SubjectQuestions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\IUserRepository.cs" />
+    <Compile Include="Repository\EnrollRepository.cs" />
     <Compile Include="Repository\MainRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddUserViewModel.cs" />
+    <Compile Include="ViewModels\AssignSbToStsViewModel.cs" />
     <Compile Include="ViewModels\EditUserViewModel.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
+    <Compile Include="ViewModels\SubjectStudentsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -292,6 +301,10 @@
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\Subject\Create.cshtml" />
+    <Content Include="Views\Subject\Details.cshtml" />
+    <Content Include="Views\Subject\Enroll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -322,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004231003187_finishedScheam.resx">
       <DependentUpon>202004231003187_finishedScheam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004231038126_added-createDateToSubjectModel.resx">
+      <DependentUpon>202004231038126_added-createDateToSubjectModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

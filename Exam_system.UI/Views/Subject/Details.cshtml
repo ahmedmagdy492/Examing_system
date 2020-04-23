@@ -1,0 +1,36 @@
+﻿@model Exam_system.UI.ViewModels.SubjectStudentsViewModel
+@{ 
+    ViewBag.Title = "Subject Students";
+}
+
+<div class="container">
+    <div class="container" style="margin: 20px;">
+        @Html.ActionLink("Assign Student to a Subject", "Enroll", "Subject", new { id=Model.Subject.Id },null)
+    </div>
+    <h3>@Model.Subject.Name | Creation Date: @Model.Subject.CreationDate</h3>    
+    @if(Model.Students.Count() == 0)
+    {
+        <h4 style="text-align: center;margin-top: 20px;">No Students have been enrolled to this subject</h4>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Grade</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var st in Model.Students)
+                {
+                    <tr>
+                        <td>@st.Name</td>
+                        <td></td>                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
