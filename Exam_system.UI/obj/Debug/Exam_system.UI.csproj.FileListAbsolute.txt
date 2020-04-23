@@ -122,3 +122,4 @@ F:\Projects\Exam_system\Exam_system.UI\bin\Unity.Mvc.pdb
 F:\Projects\Exam_system\Exam_system.UI\bin\Unity.Mvc.xml
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.edit.resources
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedRoleMember.resources
+F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.finishedScheam.resources

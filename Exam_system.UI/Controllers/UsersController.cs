@@ -30,14 +30,7 @@ namespace Exam_system.UI.Controllers
 
         public ActionResult Create()
         {
-            AddUserViewModel addUserViewModel = new AddUserViewModel
-            {                
-                Roles = new List<RoleViewModel> {
-                    new RoleViewModel { Name = "Admin" },
-                    new RoleViewModel { Name = "Student" },
-                    new RoleViewModel { Name = "Teacher" }
-                }
-            };
+            AddUserViewModel addUserViewModel = new AddUserViewModel();            
             return View(addUserViewModel);
         }
 
@@ -45,12 +38,7 @@ namespace Exam_system.UI.Controllers
         public ActionResult Create(AddUserViewModel addUserViewModel, HttpPostedFileBase img)
         {
             if(!ModelState.IsValid)
-            {
-                addUserViewModel.Roles = new List<RoleViewModel> {
-                    new RoleViewModel { Name = "Admin" },
-                    new RoleViewModel { Name = "Student" },
-                    new RoleViewModel { Name = "Teacher" }
-                };
+            {                
                 return View(addUserViewModel);
             }
             string fileName = Guid.NewGuid().ToString("N") + img.FileName;
@@ -94,6 +82,52 @@ namespace Exam_system.UI.Controllers
                 return HttpNotFound();
             }
             userDb.Users.Remove(user);
+            userDb.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public ActionResult Edit(string id)
+        {
+            var user = userDb.Users.FirstOrDefault(u => u.Id == id);
+            if(user == null)
+            {
+                return HttpNotFound();
+            }
+            EditUserViewModel userViewModel = new EditUserViewModel
+            {
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                UserName = user.UserName,
+                Name = user.Name,
+                Role = user.Role,
+                Id = id                
+            };
+            return View(userViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditUserViewModel userViewModel, HttpPostedFileBase img)
+        {                        
+            if (!ModelState.IsValid)
+            {
+                return View(userViewModel);
+            }
+            var user = userDb.Users.Find(userViewModel.Id);
+            if (img != null)
+            {
+                string fileName = Guid.NewGuid().ToString("N") + img.FileName;
+                string filePath = Server.MapPath("~/Content/imgs");
+                string fullPath = System.IO.Path.Combine(filePath, fileName);
+                user.Imgurl = fileName;
+                img.SaveAs(fullPath);
+            }
+            user.Imgurl = user.Imgurl;
+            user.Name = userViewModel.Name;
+            user.PhoneNumber = userViewModel.PhoneNumber;
+            user.Email = userViewModel.Email;
+            user.UserName = userViewModel.UserName;
+            user.Role = userViewModel.Role;
+            userManager.AddToRole(user.Id, userViewModel.Role);
             userDb.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

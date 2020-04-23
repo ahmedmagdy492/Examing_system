@@ -18,6 +18,7 @@ namespace Exam_system.UI.Models
         public string Role { get; set; }
         public List<StudentSubjects> Subjects { get; set; }
         public List<StudentExams> StudentExams { get; set; }
+        public List<StudentAnswers> StudentAnswers { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -33,6 +34,10 @@ namespace Exam_system.UI.Models
         public DbSet<StudentSubjects> StudentsSubjects { get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<StudentExams> StudentExams { get; set; }
+        public DbSet<StudentAnswers> StudentAnswers { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<SubjectQuestions> SubjectQuestions { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

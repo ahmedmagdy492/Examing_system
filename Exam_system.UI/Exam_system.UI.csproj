@@ -207,20 +207,29 @@
     <Compile Include="Migrations\202004221753357_addedRoleMember.Designer.cs">
       <DependentUpon>202004221753357_addedRoleMember.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004231003187_finishedScheam.cs" />
+    <Compile Include="Migrations\202004231003187_finishedScheam.Designer.cs">
+      <DependentUpon>202004231003187_finishedScheam.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Exam.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\StudentAnswers.cs" />
     <Compile Include="Models\StudentExams.cs" />
     <Compile Include="Models\StudentSubjects.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\SubjectQuestions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\IUserRepository.cs" />
     <Compile Include="Repository\MainRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddUserViewModel.cs" />
+    <Compile Include="ViewModels\EditUserViewModel.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -282,6 +291,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004221753357_addedRoleMember.resx">
       <DependentUpon>202004221753357_addedRoleMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004231003187_finishedScheam.resx">
+      <DependentUpon>202004231003187_finishedScheam.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -15,5 +15,6 @@ namespace Exam_system.UI.Models
         public int SubjectId { get; set; }
         public Subject Subject { get; set; }
         public List<StudentExams> StudentExams { get; set; }
+        public List<StudentAnswers> StudentAnswers { get; set; }
     }
 }
