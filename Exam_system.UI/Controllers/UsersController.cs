@@ -41,7 +41,7 @@ namespace Exam_system.UI.Controllers
             {                
                 return View(addUserViewModel);
             }
-            string fileName = Guid.NewGuid().ToString("N") + img.FileName;
+            string fileName = Guid.NewGuid().ToString("N") + System.IO.Path.GetFileName(img.FileName);
             string filePath = Server.MapPath("~/Content/imgs");
             string fullPath = System.IO.Path.Combine(filePath, fileName);            
             var newUser = new ApplicationUser 
@@ -115,7 +115,7 @@ namespace Exam_system.UI.Controllers
             var user = userDb.Users.Find(userViewModel.Id);
             if (img != null)
             {
-                string fileName = Guid.NewGuid().ToString("N") + img.FileName;
+                string fileName = Guid.NewGuid().ToString("N") + System.IO.Path.GetFileName(img.FileName);
                 string filePath = Server.MapPath("~/Content/imgs");
                 string fullPath = System.IO.Path.Combine(filePath, fileName);
                 user.Imgurl = fileName;

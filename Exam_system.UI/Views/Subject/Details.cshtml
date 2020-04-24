@@ -5,7 +5,8 @@
 
 <div class="container">
     <div class="container" style="margin: 20px;">
-        @Html.ActionLink("Assign Student to a Subject", "Enroll", "Subject", new { id=Model.Subject.Id },null)
+        @Html.ActionLink("Assign Student to a Subject", "Enroll", "Subject", new { id = Model.Subject.Id }, null) | 
+        @Html.ActionLink("Questions", "SubjectQuestions", "Question", new { id = Model.Subject.Id}, null)
     </div>
     <h3>@Model.Subject.Name | Creation Date: @Model.Subject.CreationDate</h3>    
     @if(Model.Students.Count() == 0)

@@ -1,0 +1,35 @@
+﻿@model Exam_system.UI.ViewModels.QuestionSubject
+@{
+    ViewBag.Title = "Create New Question";
+}
+
+@using (Html.BeginForm("Create", "Question", FormMethod.Post, new { @class = "row", style = "margin: 50px" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Question.Header, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Question.Header, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Question.Header, "Header is required", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuestionMark, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input name="QuestionMark" type="number" class="form-control" />
+            @Html.ValidationMessageFor(model => model.QuestionMark, "Question mark cannot be 0", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Subjects, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Question.SubjectName, new SelectList(Model.Subjects, "Name", "Name"), new { @class = "form-control" })
+        </div>
+    </div>
+
+    <button class="btn btn-default" type="submit">Create Question</button>
+    <br />
+
+    @Html.ActionLink("Add Answers", "Create", "Answer")
+}

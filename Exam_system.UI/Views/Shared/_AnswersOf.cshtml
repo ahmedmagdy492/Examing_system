@@ -1,0 +1,23 @@
+﻿@model List<Exam_system.UI.Models.Answer>
+@{ 
+    var counter = 1;
+}
+
+@foreach(var item in Model)
+{    
+    <div class="container" style="width: 50%;">
+        <tr>
+            @(counter++) - @item.Content
+            @if (item.IsCorrect == true)
+            {
+                <p style='color: green;'>Correct Answer</p>
+            }
+            else
+            {
+                <p style='color: red'>Wrong Answer</p>
+            }
+        </tr>
+        <br />
+    </div>
+}
+<tr><a href="/Answer/Create">Add More Answers</a></tr>

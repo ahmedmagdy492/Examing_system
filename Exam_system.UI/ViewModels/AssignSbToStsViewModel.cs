@@ -12,9 +12,9 @@ namespace Exam_system.UI.ViewModels
     public class AssignSbToStsViewModel
     {        
         public List<ApplicationUser> Students { get; private set; }
-        //[Required]
-        //[DisplayName("Enrolled Student")]
-        //public List<ApplicationUser> EnrolledStudents { get; set; }
+        [Required]
+        [DisplayName("Enrolled Student")]
+        public List<ApplicationUser> EnrolledStudents { get; set; }
         [Required]
         public Subject Subject { get; set; }
 
@@ -22,7 +22,7 @@ namespace Exam_system.UI.ViewModels
         {
             var db = new ApplicationDbContext();
             Students = db.Users.Where(u => u.Role == "Student").ToList();
-            //EnrolledStudents = new List<ApplicationUser>();
+            EnrolledStudents = new List<ApplicationUser>();
         }
     }
 }

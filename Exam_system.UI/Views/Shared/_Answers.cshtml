@@ -1,0 +1,21 @@
+﻿@model List<Exam_system.UI.Models.Answer>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Content</th>
+            <th>Is Correct</th>
+            <th>Question</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Content</td>
+                <td>@item.IsCorrect</td>
+                <td>@item.Question.Header</td>
+            </tr>
+        }
+    </tbody>
+</table>

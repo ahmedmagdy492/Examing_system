@@ -124,3 +124,4 @@ F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.edit.
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedRoleMember.resources
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.finishedScheam.resources
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedcreateDateToSubjectModel.resources
+F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedSubjectNameToQuestionModel.resources

@@ -1,0 +1,50 @@
+﻿@model Exam_system.UI.ViewModels.QuestionAnswersViewModel
+@{
+    ViewBag.Title = "Create Answers";    
+}
+    <div class="container row">
+        <div>
+            <h3 style="margin-bottom: 50px;">Create New Answer</h3>
+        </div>
+        @using (Html.BeginForm("Create", "Answer", FormMethod.Post, new { @class = "row" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Answer.Content, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Answer.Content, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Answer.Content, "Content is required", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Questions, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Answer.QuestionId, new SelectList(Model.Questions, "Id", "Header"), new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 50px">
+                @Html.LabelFor(model => model.Answer.IsCorrect, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Answer.IsCorrect)
+                </div>
+            </div>
+
+            <div class="form-group">                
+                <button class="btn btn-default col-md-12" type="submit">Create Answer</button>
+            </div>
+        }
+    </div>
+
+@*<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Content</th>
+            <th>Is Correct</th>
+            <th>Question</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>*@

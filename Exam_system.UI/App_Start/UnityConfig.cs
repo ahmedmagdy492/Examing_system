@@ -49,10 +49,11 @@ namespace Exam_system.UI
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<Exam>, MainRepository<Exam>>();
             container.RegisterType<IRepository<Subject>, MainRepository<Subject>>();
-            container.RegisterType<IRepository<Answer>, MainRepository<Answer>>();
+            container.RegisterType<IincludeNavigation<Answer>, AnswerRepository>();
             container.RegisterType<IRepository<Question>, MainRepository<Question>>();
             container.RegisterType<IEnrollable, EnrollRepository>();
-            container.RegisterType<AccountController>(new InjectionConstructor());        
+            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
         }
     }
 }

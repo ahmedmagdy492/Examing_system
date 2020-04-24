@@ -1,0 +1,33 @@
+﻿@model Exam_system.UI.ViewModels.SubjectQuestionsViewModel
+@{ 
+    ViewBag.Title = Model.Subject.Name + " Questions";
+}
+
+    <div class="container" style="margin-top: 20px;">
+        <div style="margin: 20px">
+            @Html.ActionLink("Create New Question", "Create", "Question")
+        </div>
+        <h3>@Model.Subject.Name Questions</h3>
+        @if (Model.SubjectQuestions.Count() == 0)
+        {
+            <h4 style="text-align: center;color: #808080">No Questions yet</h4>
+        }
+        else
+        {
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Header</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var quest in Model.SubjectQuestions)
+                    {
+                        <tr>
+                            <td>@quest.Question.Header</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>

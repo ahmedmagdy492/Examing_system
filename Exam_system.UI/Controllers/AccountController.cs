@@ -151,8 +151,8 @@ namespace Exam_system.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-                string fileName = Guid.NewGuid().ToString("N") + img.FileName;
+
+                string fileName = Guid.NewGuid().ToString("N") + System.IO.Path.GetFileName(img.FileName);
                 string filePath = Server.MapPath("~/Content/imgs");
                 string fullPath = System.IO.Path.Combine(filePath, fileName);                
                 var user = new ApplicationUser

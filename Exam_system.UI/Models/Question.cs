@@ -10,6 +10,7 @@ namespace Exam_system.UI.Models
     {
         [Required]
         public string Header { get; set; }
+        public string SubjectName { get; set; }
         public List<Answer> Answers { get; set; }
         public List<SubjectQuestions> SubjectQuestions { get; set; }
         public List<StudentAnswers> StudentAnswers { get; set; }
