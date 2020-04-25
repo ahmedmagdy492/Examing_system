@@ -19,7 +19,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Questions, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Answer.QuestionId, new SelectList(Model.Questions, "Id", "Header"), new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Answer.QuestionId, new SelectList(Model.Questions, "Id", "Header"), new { @class = "form-control", onchange= "getAnswers(event)" })
                 </div>
             </div>
 
@@ -36,15 +36,49 @@
         }
     </div>
 
-@*<table class="table table-bordered">
+<table class="table table-bordered" style="margin-top: 50px;">
     <thead>
         <tr>
-            <th>Content</th>
-            <th>Is Correct</th>
-            <th>Question</th>
+            <th>Content</th>                  
         </tr>
     </thead>
-    <tbody>
-
+    <tbody id="body">
+        @if (Model.CurrentQuestionAnswers.Count() == 0)
+        {
+            <tr>
+                <td colspan="4">no answers for this question</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var answer in Model.CurrentQuestionAnswers)
+            {
+                <tr>
+                    <td>@answer.Content</td>
+                    @if (answer.IsCorrect == true)
+                    {
+                        <td style='color: green;'>Correct Answer</td>
+                    }
+                    else
+                    {
+                        <td style='color: red'>Wrong Answer</td>
+                    }
+                </tr>
+            }
+        }        
     </tbody>
-</table>*@
+</table>
+
+@section answersScript{
+    <script>
+        function getAnswers(e)
+        {
+            $.ajax({
+                url: "https://localhost:44328/Answer/AnswersOf?id=" + e.target.value,
+                success: function (html) {
+                    document.querySelector("#body").innerHTML = html;
+                }
+            });            
+        }
+    </script>
+} 

@@ -44,7 +44,7 @@ namespace Exam_system.UI.Controllers
             }
             ansDb.Add(model.Answer);
             ansDb.Commit();
-            return PartialView("_Answers", ansDb.CollectionInclude().ToList());
+            return RedirectToAction(nameof(Create));
         }
 
         public ActionResult AnswersOf(string id)

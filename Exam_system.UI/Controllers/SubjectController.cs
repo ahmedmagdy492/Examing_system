@@ -22,7 +22,7 @@ namespace Exam_system.UI.Controllers
             this.enrollable = enrollable;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Teacher")]
         public ActionResult Index()
         {
             return View(this.subRepo.Collection().ToList());
@@ -73,7 +73,7 @@ namespace Exam_system.UI.Controllers
             return l;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Teacher")]
         public ActionResult Details(int id)
         {
             var subject = subRepo.Find(id);            
