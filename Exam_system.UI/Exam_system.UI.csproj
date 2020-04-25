@@ -192,6 +192,7 @@
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnswerController.cs" />
+    <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
@@ -224,11 +225,16 @@
     <Compile Include="Migrations\202004232316553_addedSubjectNameToQuestionModel.Designer.cs">
       <DependentUpon>202004232316553_addedSubjectNameToQuestionModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004251509328_addedExamQuestionsModle.cs" />
+    <Compile Include="Migrations\202004251509328_addedExamQuestionsModle.Designer.cs">
+      <DependentUpon>202004251509328_addedExamQuestionsModle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\ExamQuestions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Question.cs" />
@@ -243,9 +249,11 @@
     <Compile Include="Repository\EnrollRepository.cs" />
     <Compile Include="Repository\MainRepository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AddExamViewModel.cs" />
     <Compile Include="ViewModels\AddUserViewModel.cs" />
     <Compile Include="ViewModels\AssignSbToStsViewModel.cs" />
     <Compile Include="ViewModels\EditUserViewModel.cs" />
+    <Compile Include="ViewModels\ListExamViewModel.cs" />
     <Compile Include="ViewModels\QuestionAnswersViewModel.cs" />
     <Compile Include="ViewModels\QuestionSubject.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
@@ -323,6 +331,9 @@
     <Content Include="Views\Answer\Create.cshtml" />
     <Content Include="Views\Shared\_Answers.cshtml" />
     <Content Include="Views\Shared\_AnswersOf.cshtml" />
+    <Content Include="Views\Exam\Index.cshtml" />
+    <Content Include="Views\Exam\Create.cshtml" />
+    <Content Include="Views\Shared\_QuestionSubject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -359,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004232316553_addedSubjectNameToQuestionModel.resx">
       <DependentUpon>202004232316553_addedSubjectNameToQuestionModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004251509328_addedExamQuestionsModle.resx">
+      <DependentUpon>202004251509328_addedExamQuestionsModle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

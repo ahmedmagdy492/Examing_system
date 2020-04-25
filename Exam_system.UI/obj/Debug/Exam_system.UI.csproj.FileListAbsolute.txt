@@ -125,3 +125,4 @@ F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.added
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.finishedScheam.resources
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedcreateDateToSubjectModel.resources
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedSubjectNameToQuestionModel.resources
+F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedExamQuestionsModle.resources

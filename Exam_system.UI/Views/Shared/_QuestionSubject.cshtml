@@ -1,0 +1,6 @@
+﻿@model List<Exam_system.UI.Models.Question>
+
+@foreach(var question in Model)
+{
+    <option value="@question.Id">@question.Header</option>
+}

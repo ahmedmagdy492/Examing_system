@@ -38,6 +38,7 @@ namespace Exam_system.UI.Models
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<SubjectQuestions> SubjectQuestions { get; set; }
+        public DbSet<ExamQuestions> ExamQuestions { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

@@ -15,17 +15,17 @@ namespace Exam_system.UI.Repository
         {
             db = new ApplicationDbContext();
         }
-        public bool EnrollStudentsToSubject(List<ApplicationUser> students, Subject subject)
+        public bool EnrollStudentsToSubject(List<string> students, Subject subject)
         {
             bool success = false;
             foreach(var student in students)
             {
-                var st = db.StudentsSubjects.FirstOrDefault(s => s.StudentId == student.Id);
+                var st = db.StudentsSubjects.FirstOrDefault(s => s.StudentId == student);
                 if(st == null)
                 {
                     StudentSubjects sb = new StudentSubjects
                     {                        
-                        StudentId = student.Id,
+                        StudentId = student,
                         SubjectId = subject.Id,
                         Grade = 0.0f
                     };

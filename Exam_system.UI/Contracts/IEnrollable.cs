@@ -9,6 +9,6 @@ namespace Exam_system.UI.Contracts
 {
     public interface IEnrollable
     {
-        bool EnrollStudentsToSubject(List<ApplicationUser> students, Subject subject);
+        bool EnrollStudentsToSubject(List<string> students, Subject subject);
     }
 }

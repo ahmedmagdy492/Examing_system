@@ -73,5 +73,11 @@ namespace Exam_system.UI.Controllers
             db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
+        public ActionResult Questions(string name)
+        {
+            return PartialView("_QuestionSubject", questRepo.Collection().Where(q => q.SubjectName == name).ToList());
+        }
+
     }
 }
