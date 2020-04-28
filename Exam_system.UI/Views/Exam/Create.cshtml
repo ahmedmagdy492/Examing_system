@@ -5,18 +5,22 @@
     <div class="container" style="margin-top: 30px;">
         @using (Html.BeginForm(FormMethod.Post))
         {
-            <div class="form-group">
-                @Html.LabelFor(model => model.ExamName, new { @class = "control-label col-md-2" })
+            <div class="form-group">                
+                <label class="control-label col-md-2">Exam Name</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.ExamName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ExamName, "Exam Name is Required", new { @class="text-danger" })
+                    <input type="text" class="form-control" name="model.ExamName" />
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Subject, new { @class = "control-label col-md-2" })
+            <div class="form-group">                
+                <label class="control-label col-md-2">Subjects</label>
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Subject, new SelectList(Model.Subjects, "Name", "Name"), new { @class = "form-control", onchange = "getQuest(event)", id = "subs" })
+                    <select name="model.Subject" onchange="getQuest(event)" id="subs" class="form-control">
+                        @foreach(var subject in Model.Subjects)
+                        {
+                            <option value="@subject.Id">@subject.Name</option>
+                        }
+                    </select>
                 </div>
             </div>
 
@@ -37,7 +41,7 @@
         window.addEventListener('load', function () {
             const quests = document.querySelector("#quests");
             $.ajax({
-                url: "https://localhost:44328/Question/Questions?name="+ $("#subs").val(),
+                url: "https://localhost:44328/Question/Questions?id="+ $("#subs").val(),
                 success: function (html) {
                     quests.innerHTML = html;
                 }
@@ -46,7 +50,7 @@
         function getQuest(e) {
             const quests = document.querySelector("#quests");
             $.ajax({
-                url: "https://localhost:44328/Question/Questions?name=" + e.target.value,
+                url: "https://localhost:44328/Question/Questions?id=" + e.target.value,
                 success: function (html) {
                     quests.innerHTML = html;
                 }

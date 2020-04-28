@@ -334,6 +334,7 @@
     <Content Include="Views\Exam\Index.cshtml" />
     <Content Include="Views\Exam\Create.cshtml" />
     <Content Include="Views\Shared\_QuestionSubject.cshtml" />
+    <Content Include="Views\Exam\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

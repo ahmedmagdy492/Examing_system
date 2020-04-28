@@ -18,7 +18,8 @@ namespace Exam_system.UI.Controllers
 
         public ExamController(IRepository<Exam> repository)
         {
-            examRepo = repository;            
+            examRepo = repository;
+            db = new ApplicationDbContext();
         }
         public ActionResult Index()
         {
@@ -28,11 +29,12 @@ namespace Exam_system.UI.Controllers
 
         public ActionResult Create()
         {
-            return View(new AddExamViewModel
+            AddExamViewModel viewModel = new AddExamViewModel
             {
                 ExamName = string.Empty,
                 Subject = string.Empty
-            });
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -67,7 +69,8 @@ namespace Exam_system.UI.Controllers
             {
                 return HttpNotFound();
             }
-            return View();
+            List<ExamQuestions> questions = db.ExamQuestions.Include("Question").Where(e => e.ExamId == id).ToList();
+            return View(questions);
         }
     }
 }

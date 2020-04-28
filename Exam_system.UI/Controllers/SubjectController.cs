@@ -31,6 +31,7 @@ namespace Exam_system.UI.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
+            ModelState.Clear();
             return View(new Subject());
         }
 

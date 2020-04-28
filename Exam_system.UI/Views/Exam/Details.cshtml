@@ -1,0 +1,23 @@
+﻿@model List<Exam_system.UI.Models.ExamQuestions>
+
+<div class="container" style="margin-top: 30px;">
+    <h2>Exam Questions</h2>
+    <hr />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Question Header</th>                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var question in Model)
+            {
+                <tr>
+                    <td>@question.Question.Header</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="/Exam/Index">Back to Exams</a>
+</div>
