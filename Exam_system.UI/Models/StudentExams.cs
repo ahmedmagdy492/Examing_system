@@ -18,6 +18,7 @@ namespace Exam_system.UI.Models
         [ForeignKey(nameof(Exam))]
         public int ExamId { get; set; }
         public float Mark { get; set; }
+        public int? TookExamCount { get; set; }
         public ApplicationUser Student { get; set; }
         public Exam Exam { get; set; }
     }

@@ -14,7 +14,8 @@ namespace Exam_system.UI.ViewModels
         public ListExamViewModel()
         {
             var db = new ApplicationDbContext();
-            Exams = db.Exams.Include("Subject").ToList();
+            var firstSubject = db.Subjects.FirstOrDefault();
+            Exams = db.Exams.Include("Subject").Where(e => e.Subject.Id == firstSubject.Id).ToList();
             Subjects = db.Subjects.ToList();
         }
     }

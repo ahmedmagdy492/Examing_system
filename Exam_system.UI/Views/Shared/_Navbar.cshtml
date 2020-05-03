@@ -19,7 +19,7 @@
                     <li>@Html.ActionLink("Questions", "Index", "Question")</li>
                 }
                 else if (User.Identity.IsAuthenticated && User.IsInRole("Teacher"))
-                {                    
+                {
                     <li>@Html.ActionLink("Exams", "Index", "Exam")</li>
                     <li>@Html.ActionLink("Subjects", "Index", "Subject")</li>
                     <li>@Html.ActionLink("Questions", "Index", "Question")</li>
@@ -28,6 +28,7 @@
                 {
                     <li><a href="/Subject/MySubjects?id=@User.Identity.GetUserId()">My Subjects</a></li>
                     <li>@Html.ActionLink("My Exams", "StudentExams", "Exam")</li>
+                    <li>@Html.ActionLink("Exams", "SubjectsExams", "Exam")</li>
                 }
             </ul>
             @Html.Partial("_LoginPartial")

@@ -1,13 +1,13 @@
 ﻿@model Exam_system.UI.ViewModels.ListExamViewModel
 @{ 
-    ViewBag.Title = "Exams";
+    ViewBag.Title = "Exams";    
 }
 <div class="container" style="margin-top: 30px;">
     <div style="display: flex;justify-content: space-between">
         @Html.ActionLink("Create New", "Create", "Exam")
-        @Html.DropDownListFor(model => model.Subjects, new SelectList(Model.Subjects, "Id", "Name"), new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.Subjects, new SelectList(Model.Subjects, "Id", "Name"), new { @class = "form-control", onchange="filter(event)", id="listing" })
     </div>
-    <div class="row">
+    <div class="row" id="main-container">
         @if (Model.Exams.Count() == 0)
         {
             <h3 style="text-align: center;color: #808080;">No Exams Were Found</h3>
@@ -20,9 +20,62 @@
                     <div class="thumbnail">
                         <h2>@Html.ActionLink(@exam.Name, "Details", "Exam", new { id = exam.Id }, null)</h2>
                         <p>@exam.Subject.Name</p>
+                        
+                            @if(exam.IsAvailable.Value == true)
+                            {
+                                <button onclick="mkit(event, @exam.Id)" class="btn btn-default">
+                                    Unavaliable
+                                </button>
+                            }
+                            else
+                            {
+                                <button onclick="mkit(event, @exam.Id)" class="btn btn-default">
+                                    Avaliable
+                                </button>
+                            }                        
                     </div>
                 </div>
             }
         }
     </div>
 </div>
+
+@section availExams{
+    <script>
+        function mkit(e, id) {
+            e.stopPropagation();
+            $.ajax({
+                url: '/Exam/Avail?id=' + id,
+                method: 'POST',
+                success: function () {                    
+                    var value;                    
+                    if (e.target.innerText == "UNAVALIABLE")
+                        value = "Avaliable";
+                    else if (e.target.innerText == "AVALIABLE")
+                        value = "Unavaliable";
+                    e.target.innerText = value;
+                }
+            })
+        }
+        const mainContainer = document.querySelector("#main-container");
+        function filter(e) {
+            $.ajax({
+                url: '/Exam/Filter?id=' + e.target.value,
+                method: "GET",
+                success: function (response) {
+                    mainContainer.innerHTML = response;
+                }
+            })
+        }
+        const listing = document.querySelector('#listing');
+        window.addEventListener('load', () => {
+            $.ajax({
+                url: '/Exam/Filter?id=' + listing.value,
+                method: "GET",
+                success: function (response) {
+                    mainContainer.innerHTML = response;
+                }
+            })
+        })
+    </script>
+}

@@ -1,6 +1,7 @@
 ﻿using Exam_system.UI.Contracts;
 using Exam_system.UI.Models;
 using Exam_system.UI.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -47,7 +48,8 @@ namespace Exam_system.UI.Controllers
             var newExam = examRepo.Add(new Exam
             {
                 Name = model.ExamName,
-                SubjectId = Convert.ToInt32(model.Subject)
+                SubjectId = Convert.ToInt32(model.Subject),
+                IsAvailable = false
             });
             examRepo.Commit();
             foreach (var quest in model.Questions)
@@ -71,6 +73,48 @@ namespace Exam_system.UI.Controllers
             }
             List<ExamQuestions> questions = db.ExamQuestions.Include("Question").Where(e => e.ExamId == id).ToList();
             return View(questions);
+        }
+
+        public ActionResult SubjectsExams()
+        {
+            string studentId = User.Identity.GetUserId();
+            // get the current students subjects
+            var stSubjects = db.StudentsSubjects.Where(s => s.StudentId == studentId).ToList();
+            // get the exams of each subject
+            List<Exam> exams = new List<Exam>();
+
+            foreach(var subject in stSubjects)
+            {
+                foreach(var exam in db.Exams.Include("Subject").Where(e => e.SubjectId == subject.SubjectId && e.IsAvailable == true))
+                {
+                    exams.Add(exam);
+                }
+            }
+            return View(exams);
+        }
+
+        public ActionResult Avail(int id)
+        {
+            var exam = examRepo.Find(id);
+            if(exam == null)
+            {
+                return HttpNotFound();
+            }
+            exam.IsAvailable = !exam.IsAvailable.Value;
+            examRepo.Commit();
+            return Content("Done");
+        }
+
+        public ActionResult Filter(int id)
+        {
+            var subject = db.Subjects.Find(id);
+
+            if(subject == null)
+            {
+                return HttpNotFound();
+            }
+            var exams = db.Exams.Where(e => e.SubjectId == subject.Id).ToList();
+            return PartialView("_Filter", exams);
         }
     }
 }

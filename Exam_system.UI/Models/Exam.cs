@@ -15,6 +15,7 @@ namespace Exam_system.UI.Models
         [ForeignKey("Subject")]
         [DisplayName("Subject")]
         public int SubjectId { get; set; }
+        public bool? IsAvailable { get; set; }
         public Subject Subject { get; set; }
         public List<StudentExams> StudentExams { get; set; }
         public List<StudentAnswers> StudentAnswers { get; set; }

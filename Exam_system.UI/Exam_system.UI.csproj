@@ -229,6 +229,10 @@
     <Compile Include="Migrations\202004251509328_addedExamQuestionsModle.Designer.cs">
       <DependentUpon>202004251509328_addedExamQuestionsModle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005032023225_addedIsAvailablePropToExamAndAddedTookExamCountToStudentsExams.cs" />
+    <Compile Include="Migrations\202005032023225_addedIsAvailablePropToExamAndAddedTookExamCountToStudentsExams.Designer.cs">
+      <DependentUpon>202005032023225_addedIsAvailablePropToExamAndAddedTookExamCountToStudentsExams.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Answer.cs" />
@@ -335,6 +339,8 @@
     <Content Include="Views\Exam\Create.cshtml" />
     <Content Include="Views\Shared\_QuestionSubject.cshtml" />
     <Content Include="Views\Exam\Details.cshtml" />
+    <Content Include="Views\Exam\SubjectsExams.cshtml" />
+    <Content Include="Views\Shared\_Filter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -374,6 +380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004251509328_addedExamQuestionsModle.resx">
       <DependentUpon>202004251509328_addedExamQuestionsModle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005032023225_addedIsAvailablePropToExamAndAddedTookExamCountToStudentsExams.resx">
+      <DependentUpon>202005032023225_addedIsAvailablePropToExamAndAddedTookExamCountToStudentsExams.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
