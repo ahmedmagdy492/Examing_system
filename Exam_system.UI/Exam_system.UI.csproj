@@ -257,6 +257,7 @@
     <Compile Include="ViewModels\AddUserViewModel.cs" />
     <Compile Include="ViewModels\AssignSbToStsViewModel.cs" />
     <Compile Include="ViewModels\EditUserViewModel.cs" />
+    <Compile Include="ViewModels\ExamQuestionAnswersViewModel.cs" />
     <Compile Include="ViewModels\ListExamViewModel.cs" />
     <Compile Include="ViewModels\QuestionAnswersViewModel.cs" />
     <Compile Include="ViewModels\QuestionSubject.cs" />
@@ -341,6 +342,7 @@
     <Content Include="Views\Exam\Details.cshtml" />
     <Content Include="Views\Exam\SubjectsExams.cshtml" />
     <Content Include="Views\Shared\_Filter.cshtml" />
+    <Content Include="Views\Subject\SubjectExam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

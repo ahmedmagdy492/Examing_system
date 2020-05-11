@@ -1,0 +1,46 @@
+﻿@model Exam_system.UI.ViewModels.ExamQuestionAnswersViewModel
+@{
+    ViewBag.Title = Model.Exam.Name;
+    var counter = 1;
+}
+
+<nav onmouseover="show(event)" onmouseout="hide(event)" style="background: #fff;padding: 10px;border-radius: 10px;box-shadow: 0 3px 5px #ddd;position: fixed;width: 84.5%;opacity: 0.6;top: 50px;display: flex;justify-content: space-around;">
+    <a href="/Exam/SubjectsExams" class="btn btn-info">← Back</a>
+
+    <h2>@Model.Exam.Name</h2>
+
+    <h2 class="timer">
+        00:00:00
+    </h2>
+</nav>
+
+@foreach (var question in Model.QuestionWithAnswers)
+{
+    <div class="jumbotron" style="margin-top: 100px;">
+        <h3>@(counter++) - @question.Key.Header</h3>
+        <div class="form-group">
+            @foreach (var answer in question.Value)
+            {
+                <div style="font-size: 25px">
+                    <input type="radio" name="@question.Key.Id" />
+                    <span>@answer.Content</span>                
+                </div>
+            }
+        </div>
+
+    </div>
+}
+
+<button class="btn btn-default btn-lg">Finish Exam</button>
+
+
+@section examingScript{
+    <script>
+        function show(e) {
+            e.target.style.opacity = 1;
+        }
+        function hide(e) {
+            e.target.style.opacity = 0.6;
+        }
+    </script>
+}

@@ -20,7 +20,7 @@ namespace Exam_system.UI.Repository
             bool success = false;
             foreach(var student in students)
             {
-                var st = db.StudentsSubjects.FirstOrDefault(s => s.StudentId == student);
+                var st = db.StudentsSubjects.FirstOrDefault(s => s.StudentId == student && s.SubjectId == subject.Id);
                 if(st == null)
                 {
                     StudentSubjects sb = new StudentSubjects

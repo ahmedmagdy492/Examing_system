@@ -28,12 +28,14 @@ namespace Exam_system.UI.Controllers
             return View(this.subRepo.Collection().ToList());
         }
 
+
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ModelState.Clear();
             return View(new Subject());
         }
+
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
@@ -49,6 +51,7 @@ namespace Exam_system.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Delete(int id)
@@ -63,6 +66,7 @@ namespace Exam_system.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
         [Authorize(Roles = "Admin")]
         private List<ApplicationUser> GetUsers(IQueryable<StudentSubjects> list)
         {
@@ -73,6 +77,7 @@ namespace Exam_system.UI.Controllers
             }
             return l;
         }
+
 
         [Authorize(Roles = "Admin, Teacher")]
         public ActionResult Details(int id)
@@ -91,6 +96,7 @@ namespace Exam_system.UI.Controllers
             return View(viewModel);
         }
 
+
         [Authorize(Roles = "Admin")]
         public ActionResult Enroll(int id)
         {
@@ -106,6 +112,7 @@ namespace Exam_system.UI.Controllers
             };
             return View(viewModel);
         }
+
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
@@ -128,6 +135,7 @@ namespace Exam_system.UI.Controllers
             return Content($"<script>alert(\"Student is already enrolled in that subject\");location.replace(\"/Subject/Details?id={model.Subject.Id}\")</script>");
         }
 
+
         [Authorize(Roles = "Student")]
         public ActionResult MySubjects(string id)
         {
@@ -140,5 +148,34 @@ namespace Exam_system.UI.Controllers
             List<StudentSubjects> studentSubjects = usersDb.StudentsSubjects.Include("Subject").Where(s => s.StudentId == id).ToList();
             return View(studentSubjects);
         }
+
+
+        [Authorize(Roles = "Student")]
+        public ActionResult SubjectExam(string studentId, int examId)
+        {
+            // get the exam with that examId
+            var exam = usersDb.Exams.FirstOrDefault(e => e.Id == examId);
+            if (exam == null) return HttpNotFound();
+
+            // get the exam questions
+            List<ExamQuestions> questions = usersDb.ExamQuestions.Include("Question").Include("Question.Answers").Where(q => q.ExamId == examId).ToList();
+            var model = new ExamQuestionAnswersViewModel
+            {
+                Exam = exam,
+                QuestionWithAnswers = new Dictionary<Question, List<Answer>>(),
+                User = usersDb.Users.FirstOrDefault(u => u.Id == studentId)
+            };            
+
+            foreach(var question in questions)
+            {
+                model.QuestionWithAnswers.Add(question.Question, question.Question.Answers);
+            }
+
+            // save that "this student took that exam"
+            //usersDb.StudentExams.
+
+            return View(model);
+        }
+
     }
 }
