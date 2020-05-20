@@ -153,28 +153,44 @@ namespace Exam_system.UI.Controllers
         [Authorize(Roles = "Student")]
         public ActionResult SubjectExam(string studentId, int examId)
         {
-            // get the exam with that examId
-            var exam = usersDb.Exams.FirstOrDefault(e => e.Id == examId);
-            if (exam == null) return HttpNotFound();
-
-            // get the exam questions
-            List<ExamQuestions> questions = usersDb.ExamQuestions.Include("Question").Include("Question.Answers").Where(q => q.ExamId == examId).ToList();
-            var model = new ExamQuestionAnswersViewModel
+            var oldexam = usersDb.StudentExams.Include("Student").FirstOrDefault(e => e.Student.Id == studentId && e.ExamId == examId);
+            if(oldexam == null)
             {
-                Exam = exam,
-                QuestionWithAnswers = new Dictionary<Question, List<Answer>>(),
-                User = usersDb.Users.FirstOrDefault(u => u.Id == studentId)
-            };            
+                // get the exam with that examId
+                var exam = usersDb.Exams.FirstOrDefault(e => e.Id == examId);
+                if (exam == null) return HttpNotFound();
 
-            foreach(var question in questions)
-            {
-                model.QuestionWithAnswers.Add(question.Question, question.Question.Answers);
+                // get the exam questions
+                List<ExamQuestions> questions = usersDb.ExamQuestions.Include("Question").Include("Question.Answers").Where(q => q.ExamId == examId).ToList();
+                var model = new ExamQuestionAnswersViewModel
+                {
+                    Exam = exam,
+                    QuestionWithAnswers = new Dictionary<Question, List<Answer>>(),
+                    User = usersDb.Users.FirstOrDefault(u => u.Id == studentId)
+                };
+
+                foreach (var question in questions)
+                {
+                    model.QuestionWithAnswers.Add(question.Question, question.Question.Answers);
+                }
+
+                // save that "this student took that exam"
+                usersDb.StudentExams.Add(new StudentExams
+                {
+                    ExamId = examId,
+                    UserId = studentId,
+                    TookExamCount = oldexam == null ? 1 : oldexam.TookExamCount + 1,
+                    Mark = 0,
+                    TakenExamDate = DateTime.Now
+                });
+                usersDb.SaveChanges();
+
+                return View(model);
             }
-
-            // save that "this student took that exam"
-            //usersDb.StudentExams.
-
-            return View(model);
+            else
+            {
+                return PartialView("_AlreadyTakenExam");
+            }
         }
 
     }

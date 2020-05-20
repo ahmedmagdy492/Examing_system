@@ -19,6 +19,7 @@ namespace Exam_system.UI.Models
         public int ExamId { get; set; }
         public float Mark { get; set; }
         public int? TookExamCount { get; set; }
+        public DateTime TakenExamDate { get; set; }
         public ApplicationUser Student { get; set; }
         public Exam Exam { get; set; }
     }

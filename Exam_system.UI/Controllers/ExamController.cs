@@ -116,5 +116,13 @@ namespace Exam_system.UI.Controllers
             var exams = db.Exams.Where(e => e.SubjectId == subject.Id).ToList();
             return PartialView("_Filter", exams);
         }
+
+        public ActionResult MyExam()
+        {
+            var userId = User.Identity.GetUserId();
+            var examsTaken = db.StudentExams.Include("Student").Include("Exam").Where(e => e.Student.Id == userId);
+            return View(examsTaken.ToList());
+        }
+
     }
 }

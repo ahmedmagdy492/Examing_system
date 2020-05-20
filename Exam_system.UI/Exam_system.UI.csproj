@@ -233,6 +233,14 @@
     <Compile Include="Migrations\202005032023225_addedIsAvailablePropToExamAndAddedTookExamCountToStudentsExams.Designer.cs">
       <DependentUpon>202005032023225_addedIsAvailablePropToExamAndAddedTookExamCountToStudentsExams.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005201241416_addedExamTimePropToExamModel.cs" />
+    <Compile Include="Migrations\202005201241416_addedExamTimePropToExamModel.Designer.cs">
+      <DependentUpon>202005201241416_addedExamTimePropToExamModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005201451034_addedTakenExamPropToStudentsExamModel.cs" />
+    <Compile Include="Migrations\202005201451034_addedTakenExamPropToStudentsExamModel.Designer.cs">
+      <DependentUpon>202005201451034_addedTakenExamPropToStudentsExamModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Answer.cs" />
@@ -343,6 +351,8 @@
     <Content Include="Views\Exam\SubjectsExams.cshtml" />
     <Content Include="Views\Shared\_Filter.cshtml" />
     <Content Include="Views\Subject\SubjectExam.cshtml" />
+    <Content Include="Views\Shared\_AlreadyTakenExam.cshtml" />
+    <Content Include="Views\Exam\MyExam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -385,6 +395,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005032023225_addedIsAvailablePropToExamAndAddedTookExamCountToStudentsExams.resx">
       <DependentUpon>202005032023225_addedIsAvailablePropToExamAndAddedTookExamCountToStudentsExams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201241416_addedExamTimePropToExamModel.resx">
+      <DependentUpon>202005201241416_addedExamTimePropToExamModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201451034_addedTakenExamPropToStudentsExamModel.resx">
+      <DependentUpon>202005201451034_addedTakenExamPropToStudentsExamModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

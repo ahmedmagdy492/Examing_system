@@ -4,13 +4,14 @@
     var counter = 1;
 }
 
-<nav onmouseover="show(event)" onmouseout="hide(event)" style="background: #fff;padding: 10px;border-radius: 10px;box-shadow: 0 3px 5px #ddd;position: fixed;width: 84.5%;opacity: 0.6;top: 50px;display: flex;justify-content: space-around;">
-    <a href="/Exam/SubjectsExams" class="btn btn-info">← Back</a>
+<nav onmouseover="show(event)" onmouseout="hide(event)" style="background: #fff;padding: 10px;border-radius: 10px;box-shadow: 0 3px 5px #ddd;position: fixed;width: 84.5%;opacity: 0.6;top: 50px;display: flex;justify-content: space-around;">    
 
     <h2>@Model.Exam.Name</h2>
 
     <h2 class="timer">
-        00:00:00
+        <span id="hours">0</span> :
+        <span id="mins">0</span> :
+        <span id="secs">0</span>       
     </h2>
 </nav>
 
@@ -42,5 +43,41 @@
         function hide(e) {
             e.target.style.opacity = 0.6;
         }
+        function timer() {
+            const hours = document.querySelector('#hours');
+            const mins = document.querySelector('#mins');
+            const secs = document.querySelector('#secs');
+            let hour = 0;
+            let min = 1;
+            let sec = 0;                       
+            const id = setInterval(function () {
+                if (sec > 0) {
+                    sec--;
+                }
+                else {
+                    if (sec == 0 && hour == 0 && min == 0) {
+                        clearInterval(id);
+                        this.alert("Exam is Over");
+                        location.replace('/Exam/SubjectsExams');
+                    }
+                    else {
+                        sec = 59;
+                        if (min > 0) {
+                            min--;
+                        }
+                        else {
+                            min = 59;
+                            if (hour > 0) {
+                                hour--;
+                            }
+                        }
+                    }
+                }
+                hours.innerHTML = hour;
+                mins.innerHTML = min;
+                secs.innerHTML = sec; 
+            }, 1000);
+        }
+        timer();
     </script>
 }

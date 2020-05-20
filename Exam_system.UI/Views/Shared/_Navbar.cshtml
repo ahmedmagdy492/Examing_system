@@ -27,7 +27,7 @@
                 else if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
                 {
                     <li><a href="/Subject/MySubjects?id=@User.Identity.GetUserId()">My Subjects</a></li>
-                    <li>@Html.ActionLink("My Exams", "StudentExams", "Exam")</li>
+                    <li>@Html.ActionLink("My Exams", "MyExam", "Exam")</li>
                     <li>@Html.ActionLink("Exams", "SubjectsExams", "Exam")</li>
                 }
             </ul>

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Exam_system.UI.Models.StudentExams>
+@{
+    ViewBag.Title = "MyExam";
+}
+
+<h2>Exam History</h2>
+
+
+@if (Model.Count() == 0)
+{
+    <h2 style="text-align: center;color: #808080">No History</h2>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <div class="container" style="padding: 20px;border-radius: 5px;border: 1px solid #ddd;margin: 20px;">
+            <h3>@item.Exam.Name</h3>
+            <h4>@item.TakenExamDate</h4>
+            <p>Grade: @item.Mark</p>
+            <p>Took Exam: @item.TookExamCount</p>
+        </div>
+    }
+}
