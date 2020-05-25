@@ -129,3 +129,4 @@ F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.added
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedIsAvailablePropToExamAndAddedTookExamCountToStudentsExams.resources
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedExamTimePropToExamModel.resources
 F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedTakenExamPropToStudentsExamModel.resources
+F:\Projects\Exam_system\Exam_system.UI\obj\Debug\Exam_system.UI.Migrations.addedPostsModel.resources

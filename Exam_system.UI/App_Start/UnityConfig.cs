@@ -50,10 +50,13 @@ namespace Exam_system.UI
             container.RegisterType<IRepository<Exam>, MainRepository<Exam>>();
             container.RegisterType<IRepository<Subject>, MainRepository<Subject>>();
             container.RegisterType<IincludeNavigation<Answer>, AnswerRepository>();
-            container.RegisterType<IRepository<Question>, MainRepository<Question>>();            
+            container.RegisterType<IRepository<Question>, MainRepository<Question>>();
+            container.RegisterType<IPostsRepository, PostsRepository>();
+
             container.RegisterType<IEnrollable, EnrollRepository>();
             container.RegisterType<AccountController>(new InjectionConstructor());
-            container.RegisterType<ManageController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());            
         }
+
     }
 }

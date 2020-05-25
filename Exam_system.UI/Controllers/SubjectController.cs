@@ -193,5 +193,13 @@ namespace Exam_system.UI.Controllers
             }
         }
 
+
+        //[Authorize(Roles = "Student")]
+        //[HttpPost]
+        //public ActionResult FinishExam()
+        //{
+
+        //}
+
     }
 }

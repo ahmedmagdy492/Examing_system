@@ -15,24 +15,26 @@
     </h2>
 </nav>
 
-@foreach (var question in Model.QuestionWithAnswers)
-{
-    <div class="jumbotron" style="margin-top: 100px;">
-        <h3>@(counter++) - @question.Key.Header</h3>
-        <div class="form-group">
-            @foreach (var answer in question.Value)
-            {
-                <div style="font-size: 25px">
-                    <input type="radio" name="@question.Key.Id" />
-                    <span>@answer.Content</span>                
-                </div>
-            }
+<form method="Post" action="/Subject/FinishExam">
+    @foreach (var question in Model.QuestionWithAnswers)
+    {
+        <div class="jumbotron" style="margin-top: 100px;">
+            <h3>@(counter++) - @question.Key.Header</h3>
+            <div class="form-group">
+                @foreach (var answer in question.Value)
+                {
+                    <div style="font-size: 25px">
+                        <input type="radio" value="@answer.Id" name="@question.Key.Id" />
+                        <span>@answer.Content</span>
+                    </div>
+                }
+            </div>
+
         </div>
+    }
 
-    </div>
-}
-
-<button class="btn btn-default btn-lg">Finish Exam</button>
+    <button type="submit" class="btn btn-default btn-lg">Finish Exam</button>
+</form>
 
 
 @section examingScript{
@@ -47,8 +49,8 @@
             const hours = document.querySelector('#hours');
             const mins = document.querySelector('#mins');
             const secs = document.querySelector('#secs');
-            let hour = 0;
-            let min = 1;
+            let hour = 1;
+            let min = 0;
             let sec = 0;                       
             const id = setInterval(function () {
                 if (sec > 0) {

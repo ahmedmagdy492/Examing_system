@@ -1,0 +1,16 @@
+﻿@model Exam_system.UI.Models.Post
+@{
+    ViewBag.Title = "CreatePost";
+}
+<h2>Create and Publish Announcements</h2>
+@using (Html.BeginForm("CreatePost", "Posts", FormMethod.Post, new { @class = "container", style="margin: 120px auto;width: 50%;border: 1px solid #ddd;border-radius: 10px;padding: 20px;" }))
+{
+    <div class="form-group" style="width: 100%;">
+        @Html.DisplayFor(p => p.Content)
+        @Html.TextAreaFor(p => p.Content, new { @class = "form-control", style="width: 100%;" })
+        @Html.ValidationMessageFor(p => p.Content, "Content is required", new { style="color: red;" })
+    </div>    
+
+    <button class="btn btn-default" type="submit">Publish</button>
+}
+

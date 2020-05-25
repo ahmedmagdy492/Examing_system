@@ -1,4 +1,7 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<Exam_system.UI.Models.Post>
+
+@{
     ViewBag.Title = "Home";
 }
 
@@ -16,3 +19,40 @@
         }
     </div>
 </div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container">
+        <div style="display: flex;justify-content: space-between">
+            <h2>Latest Announcements</h2>
+            @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+            {
+                @Html.ActionLink("Create New Announcement", "CreatePost", "Posts", null, new { @class = "btn btn-primary", style = "margin: 20px" })
+            }
+        </div>
+        @foreach (var post in Model)
+        {
+            <div class="media" style="margin: 50px;border: 1px solid #ddd;border-radius: 10px;padding: 10px;">
+                <div class="media-left" style="margin: 150px;">
+                    <img style="width: 50px;height: 50px;border-radius: 50%;" src="~/Content/imgs/@post.Admin.Imgurl" class="media-object" alt="No Image" />
+                    <a href="#">
+                        <h4 class="media-heading">@post.Admin.Name</h4>
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 style="color: #808080">@post.PublishingDate</h4>
+                    <h3>@post.Content</h3>
+                    @if(User.IsInRole("Admin") || User.IsInRole("Teacher"))
+                    {
+                        <a href="/Posts/Delete?id=@post.Id" class="btn btn-danger">Delete Post</a>
+                        <a href="/Posts/Edit?id=@post.Id" class="btn btn-success">Edit Post</a>
+                    }
+                </div>
+            </div>
+        }
+        @if (Model.Count() == 0)
+        {
+            <h3 style="text-align: center;color: #808080">No Announcements</h3>
+        }
+    </div>
+}

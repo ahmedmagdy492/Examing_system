@@ -1,0 +1,16 @@
+﻿@model Exam_system.UI.Models.Post
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Post</h2>
+
+@using(Html.BeginForm("Edit", "Posts", new { id = Model.Id }, FormMethod.Post,new { @class = "container" }))
+{
+    <div class="form-group">
+        <label class="control-label">Content</label>
+        @Html.TextAreaFor(post => post.Content, new { @class = "form-control"})
+    </div>
+
+    <button class="btn btn-primary" type="submit">Save Changes</button>
+}

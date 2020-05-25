@@ -22,12 +22,15 @@ namespace Exam_system.UI.Controllers
             examRepo = repository;
             db = new ApplicationDbContext();
         }
+
+        [Authorize(Roles = "Teacher")]
         public ActionResult Index()
         {
             ListExamViewModel model = new ListExamViewModel();            
             return View(model);
         }
 
+        [Authorize(Roles = "Teacher")]
         public ActionResult Create()
         {
             AddExamViewModel viewModel = new AddExamViewModel
@@ -38,6 +41,7 @@ namespace Exam_system.UI.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpPost]
         public ActionResult Create(AddExamViewModel model)
         {
@@ -64,6 +68,7 @@ namespace Exam_system.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Teacher")]
         public ActionResult Details(int id)
         {            
             var exam = examRepo.Find(id);
@@ -75,6 +80,8 @@ namespace Exam_system.UI.Controllers
             return View(questions);
         }
 
+
+        [Authorize(Roles = "Student")]
         public ActionResult SubjectsExams()
         {
             string studentId = User.Identity.GetUserId();
@@ -93,6 +100,7 @@ namespace Exam_system.UI.Controllers
             return View(exams);
         }
 
+        [Authorize(Roles = "Teacher")]
         public ActionResult Avail(int id)
         {
             var exam = examRepo.Find(id);
@@ -105,6 +113,8 @@ namespace Exam_system.UI.Controllers
             return Content("Done");
         }
 
+        
+        [Authorize(Roles = "Student, Teacher")]        
         public ActionResult Filter(int id)
         {
             var subject = db.Subjects.Find(id);
@@ -117,12 +127,13 @@ namespace Exam_system.UI.Controllers
             return PartialView("_Filter", exams);
         }
 
+        [Authorize(Roles ="Student")]
         public ActionResult MyExam()
         {
             var userId = User.Identity.GetUserId();
             var examsTaken = db.StudentExams.Include("Student").Include("Exam").Where(e => e.Student.Id == userId);
             return View(examsTaken.ToList());
-        }
+        }        
 
     }
 }
