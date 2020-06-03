@@ -52,6 +52,7 @@ namespace Exam_system.UI
             container.RegisterType<IincludeNavigation<Answer>, AnswerRepository>();
             container.RegisterType<IRepository<Question>, MainRepository<Question>>();
             container.RegisterType<IPostsRepository, PostsRepository>();
+            container.RegisterType<IExamCorrection, ExamCorrection>();
 
             container.RegisterType<IEnrollable, EnrollRepository>();
             container.RegisterType<AccountController>(new InjectionConstructor());

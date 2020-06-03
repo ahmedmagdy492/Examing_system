@@ -9,7 +9,7 @@
         @Html.ActionLink("Questions", "SubjectQuestions", "Question", new { id = Model.Subject.Id}, null)
     </div>
     <h3>@Model.Subject.Name | Creation Date: @Model.Subject.CreationDate</h3>    
-    @if(Model.Students.Count() == 0)
+    @if(Model.StudentSubjects.Count() == 0)
     {
         <h4 style="text-align: center;margin-top: 20px;">No Students have been enrolled to this subject</h4>
     }
@@ -19,16 +19,15 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Grade</th>
-                    <th></th>
+                    <th>Grade</th>                    
                 </tr>
             </thead>
             <tbody>
-                @foreach (var st in Model.Students)
+                @foreach (var st in Model.StudentSubjects)
                 {
                     <tr>
-                        <td>@st.Name</td>
-                        <td></td>                        
+                        <td>@st.Student.Name</td>
+                        <td>@st.Grade</td>
                     </tr>
                 }
             </tbody>

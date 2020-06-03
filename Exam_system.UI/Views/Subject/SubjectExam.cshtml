@@ -24,7 +24,7 @@
                 @foreach (var answer in question.Value)
                 {
                     <div style="font-size: 25px">
-                        <input type="radio" value="@answer.Id" name="@question.Key.Id" />
+                        <input onclick="saveAnswer(event)" type="radio" value="@answer.Id" name="@question.Key.Id" />
                         <span>@answer.Content</span>
                     </div>
                 }
@@ -33,14 +33,68 @@
         </div>
     }
 
-    <button type="submit" class="btn btn-default btn-lg">Finish Exam</button>
+    <button onclick="sendAnswers(event)" type="submit" class="btn btn-default btn-lg">Finish Exam</button>
 </form>
 
 
 @section examingScript{
     <script>
+        const allAnswers = [];
+        function includesQuestion(value) {
+            for (let i = 0; i < allAnswers.length; i++) {
+                if (allAnswers[i].questionId == value.questionId) {
+                    return true;
+                }                
+            }
+            return false;
+        }
+        function includesAnswer(answer) {
+            for (let i = 0; i < allAnswers.length; i++) {
+                if (allAnswers[i].answerId == answer) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        function firstObj(answers, obj) {
+            for (let i = 0; i < answers.length; i++) {                
+                if (answers[i].questionId == obj.questionId) {
+                    return answers[i];
+                }
+            }
+            return null;
+        }
+        function saveAnswer(event) {
+            var obj = {
+                questionId: parseInt(event.target.name),
+                answerId: parseInt(event.target.value)
+            };
+            console.log(obj);
+            if (!includesQuestion(obj)) {
+                allAnswers.push(obj);
+            }
+            else {
+                if (includesQuestion(obj) && !includesAnswer(obj.answerId)) {
+                    var found = firstObj(allAnswers, obj);
+                    found.answerId = obj.answerId;
+                }
+            }
+        }
         function show(e) {
             e.target.style.opacity = 1;
+        }
+        function sendAnswers(event) { 
+            event.target.disabled = true;
+            $.ajax({
+                url: '/Subject/FinishExam?examId=' + @Model.Exam.Id,
+                type: 'POST',
+                data: {
+                    body: JSON.stringify(allAnswers)
+                },
+                success: function (res) {
+                    location.replace(res);
+                }
+            });
         }
         function hide(e) {
             e.target.style.opacity = 0.6;

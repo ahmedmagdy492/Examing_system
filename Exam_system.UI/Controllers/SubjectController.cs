@@ -1,6 +1,8 @@
 ﻿using Exam_system.UI.Contracts;
 using Exam_system.UI.Models;
+using Exam_system.UI.Repository;
 using Exam_system.UI.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +16,17 @@ namespace Exam_system.UI.Controllers
         private IRepository<Subject> subRepo;
         private ApplicationDbContext usersDb;
         private IEnrollable enrollable;
+        private readonly IExamCorrection examCorrection;
 
-        public SubjectController(IRepository<Subject> repo, IEnrollable enrollable)
+        public SubjectController(
+            IRepository<Subject> repo, 
+            IEnrollable enrollable,
+            IExamCorrection examCorrection)
         {
             this.subRepo = repo;
             usersDb = new ApplicationDbContext();
             this.enrollable = enrollable;
+            this.examCorrection = examCorrection;
         }
 
         [Authorize(Roles = "Admin, Teacher")]
@@ -87,11 +94,11 @@ namespace Exam_system.UI.Controllers
             {
                 return HttpNotFound();
             }
-            var studentsSubject = usersDb.StudentsSubjects.Include("Student").Where(u => u.SubjectId == id);
+            var studentsSubject = usersDb.StudentsSubjects.Include("Student").Where(u => u.SubjectId == id);            
             SubjectStudentsViewModel viewModel = new SubjectStudentsViewModel
             {
-                Subject = subject,
-                Students = GetUsers(studentsSubject)
+                Subject = subject,                
+                StudentSubjects = studentsSubject.ToList()
             };
             return View(viewModel);
         }
@@ -194,12 +201,16 @@ namespace Exam_system.UI.Controllers
         }
 
 
-        //[Authorize(Roles = "Student")]
-        //[HttpPost]
-        //public ActionResult FinishExam()
-        //{
-
-        //}
+        [Authorize(Roles = "Student")]
+        [HttpPost]
+        public string FinishExam(string body, string examId)
+        {
+            StudentAnswerViewModel[] examAnswers = Newtonsoft.Json.JsonConvert.DeserializeObject<StudentAnswerViewModel[]>(body);
+            var currentUserId = User.Identity.GetUserId();
+            List<StudentAnswers> stAnswers = examCorrection.CorrectExam(examAnswers, Convert.ToInt32(examId), currentUserId);
+            examCorrection.SetGrade(Convert.ToInt32(examId), currentUserId, stAnswers);
+            return $"/Subject/MySubjects?id={currentUserId}";
+        }
 
     }
 }

@@ -265,6 +265,8 @@
     <Compile Include="Contracts\IUserRepository.cs" />
     <Compile Include="Repository\AnswerRepository.cs" />
     <Compile Include="Repository\EnrollRepository.cs" />
+    <Compile Include="Repository\ExamCorrection.cs" />
+    <Compile Include="Repository\IExamCorrection.cs" />
     <Compile Include="Repository\IPostsRepository.cs" />
     <Compile Include="Repository\MainRepository.cs" />
     <Compile Include="Repository\PostsRepository.cs" />
@@ -278,6 +280,7 @@
     <Compile Include="ViewModels\QuestionAnswersViewModel.cs" />
     <Compile Include="ViewModels\QuestionSubject.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
+    <Compile Include="ViewModels\StudentAnswerViewModel.cs" />
     <Compile Include="ViewModels\SubjectQuestionsViewModel.cs" />
     <Compile Include="ViewModels\SubjectStudentsViewModel.cs" />
   </ItemGroup>

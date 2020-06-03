@@ -8,7 +8,7 @@ namespace Exam_system.UI.ViewModels
 {
     public class SubjectStudentsViewModel
     {
-        public Subject Subject { get; set; }      
-        public List<ApplicationUser> Students { get; set; }
+        public Subject Subject { get; set; }        
+        public List<StudentSubjects> StudentSubjects { get; set; }
     }
 }
